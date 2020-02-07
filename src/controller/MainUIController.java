@@ -19,6 +19,13 @@ public class MainUIController implements Initializable {
     // 描画用
     NegativeBGAreaChart seabedChart;
 
+    /**
+     * fxml.Initializable
+     * コンストラクタと同時に一回呼ばれる
+     *
+     * @param location Location情報
+     * @param resource リソース情報
+     */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         // 初期化
