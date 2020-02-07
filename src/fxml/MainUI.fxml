@@ -72,7 +72,7 @@
                                        <children>
                                           <Pane prefWidth="10.0" />
                                           <TextField fx:id="depthVal1" alignment="CENTER" prefWidth="40.0" text="100" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="km">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
