@@ -12,6 +12,7 @@ JAVAC_OPTS := $(OPTS) -sourcepath src -d bin
 
 # コマンド
 run: Main.class
+	cp -r src/fxml bin
 	$(JAVA) $(JAVA_OPTS) Main
 
 Main.class: $(SRCS)
