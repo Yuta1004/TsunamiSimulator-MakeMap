@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
+import controller.MainUIController;
+
 public class Main extends Application {
 
     public static void main(String args[]) {
@@ -22,6 +24,7 @@ public class Main extends Application {
         Scene scene = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainUI.fxml"));
+            loader.setController(new MainUIController());
             scene = new Scene(loader.load(), width, height);
         } catch (Exception e) {
             e.printStackTrace();
