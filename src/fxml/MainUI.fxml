@@ -22,7 +22,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="File">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Save" />
               </items>
             </Menu>
          </menus>
