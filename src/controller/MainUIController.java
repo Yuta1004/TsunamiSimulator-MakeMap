@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
@@ -91,6 +92,25 @@ public class MainUIController implements Initializable {
         AnchorPane.setBottomAnchor(seabedChart, 10.0);
         areaChartPane.getChildren().clear();
         areaChartPane.getChildren().add(seabedChart);
+    }
+
+    /**
+     * 描画
+     */
+    private void draw() {
+        // 描画データ準備
+        XYChart.Series<Number, Number> seriesSeabed = new XYChart.Series<Number, Number>();
+        for(SeabedData data : seabedData) {
+            seriesSeabed.getData()
+                        .add(
+                            new XYChart.Data<Number, Number>(data.dist, -data.height)
+                        );
+        }
+
+        // データセット
+        seabedChart.getData().clear();
+        seabedChart.getData().add(seriesSeabed);
+        seabedChart.setLegendVisible(false);
     }
 
     /**
