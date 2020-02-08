@@ -2,10 +2,10 @@ package controller;
 
 class SeabedData {
 
-    public double dist, height;
+    public double dist, depth;
 
-    public SeabedData(double dist, double height) {
+    public SeabedData(double dist, double depth) {
         this.dist = dist;
-        this.height = height;
+        this.depth = depth;
     }
 }

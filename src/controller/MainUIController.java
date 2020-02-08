@@ -112,7 +112,7 @@ public class MainUIController implements Initializable {
         for(SeabedData data : seabedData) {
             seriesSeabed.getData()
                         .add(
-                            new XYChart.Data<Number, Number>(data.dist, -data.height)
+                            new XYChart.Data<Number, Number>(data.dist, -data.depth)
                         );
         }
 
@@ -125,16 +125,16 @@ public class MainUIController implements Initializable {
     /**
      * データ追加
      */
-    private void setSeabedData(double dist, double height) {
+    private void setSeabedData(double dist, double depth) {
         try {
             SeabedData data = seabedData.stream()
                                         .filter(elem -> elem.dist == dist)
                                         .findFirst()
                                         .get();
             int idx = seabedData.indexOf(data);
-            seabedData.set(idx, new SeabedData(dist, height));
+            seabedData.set(idx, new SeabedData(dist, depth));
         } catch (Exception e) {
-            seabedData.add(new SeabedData(dist, height));
+            seabedData.add(new SeabedData(dist, depth));
         }
     }
 
