@@ -6,6 +6,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,11 +20,13 @@ public class MainUIController implements Initializable {
     @FXML
     private AnchorPane areaChartPane;
     @FXML
-    private TextField depthVal, upperHeightVal, lowerHeightVal, upperWidthVal, lowerWidthVal;
+    private Button setWave;
+    @FXML
+    private TextField distVal, depthVal, upperHeightVal, lowerHeightVal, upperWidthVal, lowerWidthVal;
 
     // 描画用
     private NegativeBGAreaChart seabedChart;
-    private double depth, upperHeight, lowerHeight, upperWidth, lowerWidth;
+    private double upperHeight, lowerHeight, upperWidth, lowerWidth;
 
     // 生成データ用
     private ArrayList<SeabedData> seabedData;
@@ -46,6 +49,12 @@ public class MainUIController implements Initializable {
         initAreaChart();
 
         // UI部品の動作を実装
+        setWave.setOnAction(event -> {
+            double dist = loadInputValue(depthVal);
+            double depth = loadInputValue(distVal);
+            setSeabedData(dist, depth);
+            draw();
+        });
         upperWidthVal.textProperty().addListener((obs, oldText, newText) -> {
             upperWidth = loadInputValue(upperWidthVal);
             initAreaChart();

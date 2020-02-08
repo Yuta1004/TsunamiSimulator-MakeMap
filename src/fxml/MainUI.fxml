@@ -71,7 +71,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Pane prefWidth="10.0" />
-                                          <TextField fx:id="depthVal1" alignment="CENTER" prefWidth="40.0" text="100" />
+                                          <TextField fx:id="distVal" alignment="CENTER" prefWidth="40.0" text="100" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="km">
                                              <font>
                                                 <Font size="20.0" />
@@ -83,7 +83,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" prefWidth="150.0" text="Set Wave">
+                        <Button fx:id="setWave" mnemonicParsing="false" prefWidth="150.0" text="Set Wave">
                            <font>
                               <Font size="16.0" />
                            </font>
