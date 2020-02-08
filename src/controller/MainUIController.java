@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 import lib.NegativeBGAreaChart;
 
@@ -23,6 +24,9 @@ public class MainUIController implements Initializable {
     private NegativeBGAreaChart seabedChart;
     private double depth, upperHeight, lowerHeight, upperWidth, lowerWidth;
 
+    // 生成データ用
+    private ArrayList<SeabedData> seabedData;
+
     /**
      * fxml.Initializable
      * コンストラクタと同時に一回呼ばれる
@@ -37,6 +41,7 @@ public class MainUIController implements Initializable {
         lowerWidth = 0.0;
         upperHeight = 20.0;
         lowerHeight = -20.0;
+        seabedData = new ArrayList<SeabedData>();
         initAreaChart();
 
         // UI部品の動作を実装
@@ -86,6 +91,22 @@ public class MainUIController implements Initializable {
         AnchorPane.setBottomAnchor(seabedChart, 10.0);
         areaChartPane.getChildren().clear();
         areaChartPane.getChildren().add(seabedChart);
+    }
+
+    /**
+     * データ追加
+     */
+    private void setSeabedData(double dist, double height) {
+        try {
+            SeabedData data = seabedData.stream()
+                                        .filter(elem -> elem.dist == dist)
+                                        .findFirst()
+                                        .get();
+            int idx = seabedData.indexOf(data);
+            seabedData.set(idx, new SeabedData(dist, height));
+        } catch (Exception e) {
+            seabedData.add(new SeabedData(dist, height));
+        }
     }
 
     /**
