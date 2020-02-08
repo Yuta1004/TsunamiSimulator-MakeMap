@@ -52,16 +52,6 @@ public class MainUIController implements Initializable {
         seabedData = new ArrayList<SeabedData>();
         initAreaChart();
 
-        // AreaChartにマウスイベントを実装
-        Node seabedChartBK = seabedChart.lookup(".chart-plot-background");
-        seabedChartBK.setOnMouseDragged(event -> {
-            Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
-            Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
-            leftStatus.setText("Set: "+ dist + "km, " + depth + "m");
-            setSeabedData(dist.doubleValue(), -depth.doubleValue());
-            draw();
-        });
-
         // UI部品の動作を実装
         setWave.setOnAction(event -> {
             double dist = loadInputValue(distVal);
@@ -111,6 +101,17 @@ public class MainUIController implements Initializable {
         seabedChart = new NegativeBGAreaChart<>(xAxis, yAxis);
         seabedChart.setCreateSymbols(false);
         seabedChart.setAnimated(false);
+
+        // マウスイベント
+        Node seabedChartBK = seabedChart.lookup(".chart-plot-background");
+        seabedChartBK.setOnMouseDragged(event -> {
+            Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
+            Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
+            leftStatus.setText("Set: "+ dist + "km, " + depth + "m");
+            setSeabedData(dist.doubleValue(), -depth.doubleValue());
+            draw();
+        });
+
 
         // 配置
         AnchorPane.setTopAnchor(seabedChart, 10.0);
