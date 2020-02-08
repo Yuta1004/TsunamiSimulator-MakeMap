@@ -58,18 +58,22 @@ public class MainUIController implements Initializable {
         upperWidthVal.textProperty().addListener((obs, oldText, newText) -> {
             upperWidth = loadInputValue(upperWidthVal);
             initAreaChart();
+            draw();
         });
         lowerWidthVal.textProperty().addListener((obs, oldText, newText) -> {
             lowerWidth = loadInputValue(lowerWidthVal);
             initAreaChart();
+            draw();
         });
         upperHeightVal.textProperty().addListener((obs, oldText, newText) -> {
             upperHeight = loadInputValue(upperHeightVal);
             initAreaChart();
+            draw();
         });
         lowerHeightVal.textProperty().addListener((obs, oldText, newText) -> {
             lowerHeight = loadInputValue(lowerHeightVal);
             initAreaChart();
+            draw();
         });
     }
 
