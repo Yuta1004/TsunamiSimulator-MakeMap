@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
@@ -31,6 +32,8 @@ public class MainUIController implements Initializable {
     private Button setWave;
     @FXML
     private Label leftStatus;
+    @FXML
+    private MenuItem saveData;
     @FXML
     private TextField distVal, depthVal, upperHeightVal, lowerHeightVal, upperWidthVal, lowerWidthVal;
 
@@ -59,6 +62,7 @@ public class MainUIController implements Initializable {
         initAreaChart();
 
         // UI部品の動作を実装
+        saveData.setOnAction(event -> outputSeabedData());
         setWave.setOnAction(event -> {
             double dist = loadInputValue(distVal);
             double depth = loadInputValue(depthVal);
