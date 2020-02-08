@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,15 @@ public class MainUIController implements Initializable {
         lowerHeight = -20.0;
         seabedData = new ArrayList<SeabedData>();
         initAreaChart();
+
+        // AreaChartにマウスイベントを実装
+        seabedChart.lookup(".chart-plot-background")
+                   .setOnMouseDragged(event -> {
+                        Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
+                        Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
+                        setSeabedData(dist.doubleValue(), -depth.doubleValue());
+                        draw();
+                   });
 
         // UI部品の動作を実装
         setWave.setOnAction(event -> {
