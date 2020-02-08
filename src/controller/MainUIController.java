@@ -20,6 +20,7 @@ import java.io.BufferedWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import lib.NegativeBGAreaChart;
 
@@ -174,6 +175,9 @@ public class MainUIController implements Initializable {
         // FileChooser準備
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save File");
+
+        // データ準備
+        Collections.sort(seabedData);
 
         // パス取得->保存
         File outputFile = chooser.showSaveDialog((Stage)areaChartPane.getScene().getWindow());
