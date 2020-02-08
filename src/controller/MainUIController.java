@@ -9,7 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
@@ -154,6 +160,27 @@ public class MainUIController implements Initializable {
             seabedData.set(idx, new SeabedData(dist, depth));
         } catch (Exception e) {
             seabedData.add(new SeabedData(dist, depth));
+        }
+    }
+
+    /**
+     * 地形データ出力
+     */
+    private void outputSeabedData() {
+        // FileChooser準備
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Save File");
+
+        // パス取得->保存
+        File outputFile = chooser.showSaveDialog((Stage)areaChartPane.getScene().getWindow());
+        if(outputFile != null) {
+            try {
+                FileWriter fw = new FileWriter(outputFile.getAbsolutePath(), false);
+                PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+                for(SeabedData data : seabedData)
+                    pw.println(data.dist + "\t" + (-data.depth));
+                pw.close();
+            } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
