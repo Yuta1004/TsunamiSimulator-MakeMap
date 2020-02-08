@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,8 @@ public class MainUIController implements Initializable {
     private AnchorPane areaChartPane;
     @FXML
     private Button setWave;
+    @FXML
+    private Label leftStatus;
     @FXML
     private TextField distVal, depthVal, upperHeightVal, lowerHeightVal, upperWidthVal, lowerWidthVal;
 
@@ -54,6 +57,7 @@ public class MainUIController implements Initializable {
                    .setOnMouseDragged(event -> {
                         Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
                         Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
+                        leftStatus.setText("Set: "+ dist + "km, " + depth + "m");
                         setSeabedData(dist.doubleValue(), -depth.doubleValue());
                         draw();
                    });
