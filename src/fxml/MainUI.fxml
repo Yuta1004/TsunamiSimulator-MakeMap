@@ -43,26 +43,6 @@
                            <children>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Depth" textAlignment="CENTER">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                       <children>
-                                          <Pane prefWidth="10.0" />
-                                          <TextField fx:id="depthVal" alignment="CENTER" prefWidth="40.0" text="100" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" spacing="10.0">
-                                 <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Distance">
                                        <font>
                                           <Font size="20.0" />
@@ -73,6 +53,26 @@
                                           <Pane prefWidth="10.0" />
                                           <TextField fx:id="distVal" alignment="CENTER" prefWidth="40.0" text="100" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="km">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" spacing="10.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Depth" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Pane prefWidth="10.0" />
+                                          <TextField fx:id="depthVal" alignment="CENTER" prefWidth="40.0" text="5" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
