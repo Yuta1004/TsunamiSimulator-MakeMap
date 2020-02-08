@@ -50,8 +50,8 @@ public class MainUIController implements Initializable {
 
         // UI部品の動作を実装
         setWave.setOnAction(event -> {
-            double dist = loadInputValue(depthVal);
-            double depth = loadInputValue(distVal);
+            double dist = loadInputValue(distVal);
+            double depth = loadInputValue(depthVal);
             setSeabedData(dist, depth);
             draw();
         });
