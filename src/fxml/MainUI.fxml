@@ -51,7 +51,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Pane prefWidth="10.0" />
-                                          <TextField fx:id="distVal" alignment="CENTER" prefWidth="40.0" text="100" />
+                                          <TextField fx:id="distVal" alignment="CENTER" prefWidth="40.0" text="0" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="km">
                                              <font>
                                                 <Font size="20.0" />
@@ -71,7 +71,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
                                           <Pane prefWidth="10.0" />
-                                          <TextField fx:id="depthVal" alignment="CENTER" prefWidth="40.0" text="5" />
+                                          <TextField fx:id="depthVal" alignment="CENTER" prefWidth="40.0" text="0" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
                                              <font>
                                                 <Font size="20.0" />
