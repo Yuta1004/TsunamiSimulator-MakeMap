@@ -156,15 +156,16 @@ public class MainUIController implements Initializable {
      * データ追加
      */
     private void setSeabedData(double dist, double depth) {
+        double distP = Math.ceil(dist*1000)/1000.0;
         try {
             SeabedData data = seabedData.stream()
-                                        .filter(elem -> elem.dist == dist)
+                                        .filter(elem -> elem.dist == distP)
                                         .findFirst()
                                         .get();
             int idx = seabedData.indexOf(data);
-            seabedData.set(idx, new SeabedData(dist, depth));
+            seabedData.set(idx, new SeabedData(distP, depth));
         } catch (Exception e) {
-            seabedData.add(new SeabedData(dist, depth));
+            seabedData.add(new SeabedData(distP, depth));
         }
     }
 
