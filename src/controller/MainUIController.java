@@ -118,7 +118,7 @@ public class MainUIController implements Initializable {
         seabedChartBK.setOnMouseDragged(event -> {
             Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
             Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
-            leftStatus.setText("Set: "+ dist + "km, " + depth + "m");
+            leftStatus.setText("DataLength: "+ seabedData.size() + ", Set: "+ dist + "km, " + depth + "m");
             setSeabedData(dist.doubleValue(), -depth.doubleValue());
             draw();
         });
