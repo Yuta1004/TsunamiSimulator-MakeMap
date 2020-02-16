@@ -177,20 +177,45 @@ public class MainUIController implements Initializable {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Save File");
 
-        // データ準備
-        Collections.sort(seabedData);
-
         // パス取得->保存
         File outputFile = chooser.showSaveDialog((Stage)areaChartPane.getScene().getWindow());
         if(outputFile != null) {
             try {
                 FileWriter fw = new FileWriter(outputFile.getAbsolutePath(), false);
                 PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-                for(SeabedData data : seabedData)
+                for(SeabedData data : normalization())
                     pw.println(data.dist + "\t" + (-data.depth));
                 pw.close();
             } catch (Exception e) { e.printStackTrace(); }
         }
+    }
+
+    /**
+     * データ正規化
+     */
+    private ArrayList<SeabedData> normalization() {
+        // 1. 元データソート
+        Collections.sort(seabedData);
+
+        // 2. 設定 & 準備
+        double gran = 0.3;
+        int size = seabedData.size();
+        ArrayList<SeabedData> retData = new ArrayList<SeabedData>();
+
+        // 3. 正規化
+        int idxA = 0, idxB;
+        for(; idxA < size-1; ++ idxA) {
+            idxB = idxA+1;
+            SeabedData dataA = seabedData.get(idxA);
+            SeabedData dataB = seabedData.get(idxB);
+            double dd = (dataB.depth-dataA.depth)/(dataB.dist-dataA.dist)*gran;
+            for(double dist = dataA.dist; dist <= dataB.dist; dist += gran)
+                retData.add(new SeabedData(dist, dataA.depth+(dist-dataA.dist)*dd));
+        }
+
+        // 4. ソート
+        Collections.sort(retData);
+        return retData;
     }
 
     /**
