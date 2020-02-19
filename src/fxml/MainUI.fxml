@@ -27,7 +27,7 @@
             </Menu>
          </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.7934272300469484" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.7644757433489828" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane fx:id="areaChartPane" />
             <AnchorPane>
