@@ -6,6 +6,7 @@ JLINK := $(JAVA_HOME)/bin/jlink
 
 SRCS := $(wildcard *.java */*.java)
 JAVAFX_MODULES := javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web
+PAR_DIR = ../TsunamiSimulator
 
 OPTS := -p $(JAVAFX_PATH)/lib --add-modules $(JAVAFX_MODULES)
 JAVA_OPTS := $(OPTS) -classpath bin
@@ -35,6 +36,13 @@ clean:
 clean-hard:
 	make clean
 	rm -rf .*.*.un* .*.un* **/.*.*.un* **/.*.un* **/**/.*.*.un* **/**/.*.un*
+
+update:
+	cp src/fxml/MainUI.fxml $(PAR_DIR)/src/fxml/MakeMap.fxml
+	cp src/controller/MainUIController.java $(PAR_DIR)/src/controller/MakeMapUIController.java
+	cp src/controller/SeabedData.java $(PAR_DIR)/src/controller/
+	sed -i -e "s/MainUIController/MakeMapUIController/g" $(PAR_DIR)/src/controller/MakeMapUIController.java 0> /dev/null
+	rm $(PAR_DIR)/src/controller/MakeMapUIController.java-e
 
 # マクロ
 define gen-dist
