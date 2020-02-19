@@ -208,7 +208,7 @@ public class MainUIController implements Initializable {
             idxB = idxA+1;
             SeabedData dataA = seabedData.get(idxA);
             SeabedData dataB = seabedData.get(idxB);
-            double dd = (dataB.depth-dataA.depth)/(dataB.dist-dataA.dist)*gran;
+            double dd = (dataB.depth-dataA.depth)/(dataB.dist-dataA.dist);
             for(double dist = dataA.dist; dist <= dataB.dist; dist += gran)
                 retData.add(new SeabedData(dist, dataA.depth+(dist-dataA.dist)*dd));
         }
