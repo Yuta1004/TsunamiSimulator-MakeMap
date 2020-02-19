@@ -20,9 +20,9 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
          <menus>
-            <Menu mnemonicParsing="false" text="File">
+            <Menu mnemonicParsing="false" text="%File">
               <items>
-                <MenuItem fx:id="saveData" mnemonicParsing="false" text="Save" />
+                <MenuItem fx:id="saveData" mnemonicParsing="false" text="%Save" />
               </items>
             </Menu>
          </menus>
@@ -34,7 +34,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <Label text="Property">
+                        <Label text="%Property">
                            <font>
                               <Font name="Cochin" size="35.0" />
                            </font>
@@ -43,7 +43,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Distance">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Distance">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -63,7 +63,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Depth" textAlignment="CENTER">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Depth" textAlignment="CENTER">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -83,20 +83,20 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Button fx:id="setWave" mnemonicParsing="false" prefWidth="150.0" text="Set Wave">
+                        <Button fx:id="setWave" mnemonicParsing="false" prefWidth="150.0" text="%SetWave">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
                         <Separator prefWidth="200.0" />
-                        <Label text="Viewer Settings">
+                        <Label text="%ViewerSettings">
                            <font>
                               <Font name="Cochin" size="35.0" />
                            </font>
                         </Label>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Width">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Width">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -127,7 +127,7 @@
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Height">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Height">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
