@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
@@ -21,6 +22,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.function.Consumer;
 
 import lib.NegativeBGAreaChart;
 
@@ -114,15 +116,15 @@ public class MainUIController implements Initializable {
         seabedChart.setAnimated(false);
 
         // マウスイベント
-        Node seabedChartBK = seabedChart.lookup(".chart-plot-background");
-        seabedChartBK.setOnMouseDragged(event -> {
+        Consumer<MouseEvent> setData = (event) -> {
             Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
             Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
             leftStatus.setText("DataLength: "+ seabedData.size() + ", Set: "+ dist + "km, " + depth + "m");
             setSeabedData(dist.doubleValue(), -depth.doubleValue());
             draw();
-        });
-
+        };
+        seabedChart.lookup(".chart-plot-background").setOnMousePressed(event -> setData.accept(event));
+        seabedChart.lookup(".chart-plot-background").setOnMouseDragged(event -> setData.accept(event));
 
         // 配置
         AnchorPane.setTopAnchor(seabedChart, 10.0);
