@@ -117,14 +117,15 @@ public class MainUIController implements Initializable {
 
         // マウスイベント
         Consumer<MouseEvent> setData = (event) -> {
-            Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX());
-            Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY());
-            leftStatus.setText("DataLength: "+ seabedData.size() + ", Set: "+ dist + "km, " + depth + "m");
+            double chartBaseX = ((Number)seabedChart.getYAxis().getWidth()).doubleValue();
+            Number dist = (Number)seabedChart.getXAxis().getValueForDisplay(event.getX()-chartBaseX-10);
+            Number depth = (Number)seabedChart.getYAxis().getValueForDisplay(event.getY()-10);
+            leftStatus.setText("DataLength: "+ seabedData.size() + ", Set: "+ dist.doubleValue() + "km, " + depth + "m");
             setSeabedData(dist.doubleValue(), -depth.doubleValue());
             draw();
         };
-        seabedChart.lookup(".chart-plot-background").setOnMousePressed(event -> setData.accept(event));
-        seabedChart.lookup(".chart-plot-background").setOnMouseDragged(event -> setData.accept(event));
+        seabedChart.lookup(".chart-content").setOnMousePressed(event -> setData.accept(event));
+        seabedChart.lookup(".chart-content").setOnMouseDragged(event -> setData.accept(event));
 
         // 配置
         AnchorPane.setTopAnchor(seabedChart, 10.0);
