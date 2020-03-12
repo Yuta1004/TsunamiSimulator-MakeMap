@@ -13,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,7 +37,7 @@ public class MainUIController implements Initializable {
     @FXML
     private Label leftStatus;
     @FXML
-    private MenuItem saveData;
+    private MenuItem saveData, loadData;
     @FXML
     private TextField distVal, depthVal, upperHeightVal, lowerHeightVal, upperWidthVal, lowerWidthVal;
 
@@ -65,6 +66,7 @@ public class MainUIController implements Initializable {
         initAreaChart();
 
         // UI部品の動作を実装
+        loadData.setOnAction(event -> getFilePath());
         saveData.setOnAction(event -> outputSeabedData());
         setWave.setOnAction(event -> {
             double dist = loadInputValue(distVal);
@@ -232,4 +234,21 @@ public class MainUIController implements Initializable {
         }
     }
 
+    /**
+     * ファイルを利用者に選択してもらい、その結果を返す
+     *
+     * @return URL 選択されたファイルのURL
+     */
+    private URL getFilePath() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select DEPTH.data");
+        chooser.getExtensionFilters().add(
+                    new ExtensionFilter("DataFile", "*.data", "*.txt")
+                );
+        File file = chooser.showOpenDialog((Stage)areaChartPane.getScene().getWindow());
+        try {
+            return file == null ? new URL("file:///null") : file.toURI().toURL();
+        } catch(Exception e) { e.printStackTrace(); }
+        return null;
+    }
 }
