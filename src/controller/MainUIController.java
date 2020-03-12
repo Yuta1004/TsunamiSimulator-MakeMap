@@ -68,11 +68,14 @@ public class MainUIController implements Initializable {
         initAreaChart();
 
         // UI部品の動作を実装
-        saveData.setOnAction(event -> outputSeabedData());
         loadData.setOnAction(event -> {
             URL fileURL = getFilePath(false);
             inputSeabedData(fileURL);
             draw();
+        });
+        saveData.setOnAction(event -> {
+            URL outputURL = getFilePath(true);
+            outputSeabedData(outputURL);
         });
         setWave.setOnAction(event -> {
             double dist = loadInputValue(distVal);
@@ -216,22 +219,23 @@ public class MainUIController implements Initializable {
     /**
      * 地形データ出力
      */
-    private void outputSeabedData() {
-        // FileChooser準備
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Save File");
+    private void outputSeabedData(URL outputFilePath) {
+        // パス変換
+        File outputFile = null;
+        try {
+            toutputFile = new File(outputFilePath.toURI());
+            if(outputFile == null)
+                return;
+        } catch (Exception e) { return; }
 
-        // パス取得->保存
-        File outputFile = chooser.showSaveDialog((Stage)areaChartPane.getScene().getWindow());
-        if(outputFile != null) {
-            try {
-                FileWriter fw = new FileWriter(outputFile.getAbsolutePath(), false);
-                PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-                for(SeabedData data : normalization())
-                    pw.println(data.dist + "\t" + (-data.depth));
-                pw.close();
-            } catch (Exception e) { e.printStackTrace(); }
-        }
+        // 保存
+        try {
+            FileWriter fw = new FileWriter(outputFile.getAbsolutePath(), false);
+            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+            for(SeabedData data : normalization())
+                pw.println(data.dist + "\t" + (-data.depth));
+            pw.close();
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     /**
