@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
@@ -66,8 +68,12 @@ public class MainUIController implements Initializable {
         initAreaChart();
 
         // UI部品の動作を実装
-        loadData.setOnAction(event -> getFilePath());
         saveData.setOnAction(event -> outputSeabedData());
+        loadData.setOnAction(event -> {
+            URL fileURL = getFilePath();
+            inputSeabedData(fileURL);
+            draw();
+        });
         setWave.setOnAction(event -> {
             double dist = loadInputValue(distVal);
             double depth = loadInputValue(depthVal);
@@ -171,6 +177,39 @@ public class MainUIController implements Initializable {
             seabedData.set(idx, new SeabedData(distP, depth));
         } catch (Exception e) {
             seabedData.add(new SeabedData(distP, depth));
+        }
+    }
+
+    /**
+     * 地形データを読み取って値をセットする
+     *
+     * @param depthFileURL ファイルパス
+     */
+    private void inputSeabedData(URL depthFileURL) {
+        // データファイル読み込み
+        ArrayList<String> dataLines = new ArrayList<String>();
+        try {
+            String line;
+            BufferedReader br = new BufferedReader(new InputStreamReader(depthFileURL.openStream()));
+            while((line = br.readLine()) != null)
+                dataLines.add(line);
+        } catch(Exception e) {
+            System.err.println("データファイル読み込み中にエラーが発生しました");
+            return;
+        }
+
+        // データセット
+        seabedData = new ArrayList<SeabedData>();
+        for(int idx = 0; idx < dataLines.size(); ++ idx) {
+            // トークン分割 -> 追加
+            int bIdx = 0;
+            String line[] = dataLines.get(idx).split("( |\t)+");
+            if(line[0].length() == 0)
+                bIdx ++;
+            seabedData.add(new SeabedData(
+                Double.parseDouble(line[bIdx]),
+                Double.parseDouble(line[bIdx+1]) * -1
+            ));
         }
     }
 
