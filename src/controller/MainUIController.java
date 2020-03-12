@@ -70,7 +70,7 @@ public class MainUIController implements Initializable {
         // UI部品の動作を実装
         saveData.setOnAction(event -> outputSeabedData());
         loadData.setOnAction(event -> {
-            URL fileURL = getFilePath();
+            URL fileURL = getFilePath(false);
             inputSeabedData(fileURL);
             draw();
         });
@@ -278,13 +278,20 @@ public class MainUIController implements Initializable {
      *
      * @return URL 選択されたファイルのURL
      */
-    private URL getFilePath() {
+    private URL getFilePath(boolean doSave) {
+        // FileChooser準備
+        File file = null;
         FileChooser chooser = new FileChooser();
-        chooser.setTitle("Select DEPTH.data");
+        chooser.setTitle("Select Path");
         chooser.getExtensionFilters().add(
                     new ExtensionFilter("DataFile", "*.data", "*.txt")
                 );
-        File file = chooser.showOpenDialog((Stage)areaChartPane.getScene().getWindow());
+
+        // 起動 -> 例外処理
+        if(doSave)
+            file = chooser.showSaveDialog((Stage)areaChartPane.getScene().getWindow());
+        else
+            file = chooser.showOpenDialog((Stage)areaChartPane.getScene().getWindow());
         try {
             return file == null ? new URL("file:///null") : file.toURI().toURL();
         } catch(Exception e) { e.printStackTrace(); }
