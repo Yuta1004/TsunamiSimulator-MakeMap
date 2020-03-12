@@ -22,6 +22,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="%File">
               <items>
+                  <MenuItem fx:id="loadData" mnemonicParsing="false" text="%Load" />
                 <MenuItem fx:id="saveData" mnemonicParsing="false" text="%Save" />
               </items>
             </Menu>
