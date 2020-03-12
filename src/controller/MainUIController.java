@@ -223,7 +223,7 @@ public class MainUIController implements Initializable {
         // パス変換
         File outputFile = null;
         try {
-            toutputFile = new File(outputFilePath.toURI());
+            outputFile = new File(outputFilePath.toURI());
             if(outputFile == null)
                 return;
         } catch (Exception e) { return; }
